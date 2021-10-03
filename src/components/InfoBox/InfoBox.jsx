@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import InfoLine from "../InfoLine/InfoLine";
 import SideInfo from "../SideInfo/SideInfo";
 import MapComponent from "../Map/MapComponent";
+import NavTabs from "../Tab/Tabs";
 
 const iconTheme = createTheme({
   components: {
@@ -60,11 +61,29 @@ const Item = styled('div', {
 }));
 
 const InfoBox = ({ itemOnFocus }) => {
-  const { global, loadingStatusCovidApi } = useSelector((state) => state.covid);
+  const { global, loadingStatusCovidApi, countriesInCovid } = useSelector((state) => state.covid);
 
   if (loadingStatusCovidApi !== 'idle') {
     return <div> Loading... </div>;
   }
+
+  let countrySelector = true;
+
+  const tempItem = (item, data) => {
+    if (item !== false) {
+      const selectedCountry = countriesInCovid.find((country) => country.Country === item.name);
+
+      countrySelector = false;
+
+      return (
+        <p>{typeof selectedCountry !== 'undefined' ? numberWithCommas(selectedCountry[data]) : 'Not data'} </p>
+      );
+    }
+
+    return (
+      <p>{numberWithCommas(global[data]) }</p>
+    );
+  };
 
   const numberWithCommas = (num) => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
@@ -76,7 +95,7 @@ const InfoBox = ({ itemOnFocus }) => {
             <Grid item xs={3}>
               <Item color='firstly'>
                 <div>
-                  <p>{numberWithCommas(global.TotalConfirmed)}</p>
+                  {tempItem(itemOnFocus, 'TotalConfirmed')}
                   <p>Total Confirmed</p>
                 </div>
               </Item>
@@ -84,7 +103,7 @@ const InfoBox = ({ itemOnFocus }) => {
             <Grid item xs={3}>
               <Item color='secondary'>
                 <div>
-                  <p>{numberWithCommas(global.NewDeaths)}</p>
+                  {tempItem(itemOnFocus, 'NewDeaths')}
                   <p>New Deaths</p>
                 </div>
               </Item>
@@ -92,7 +111,7 @@ const InfoBox = ({ itemOnFocus }) => {
             <Grid item xs={3}>
               <Item color='primary'>
                 <div>
-                  <p>{numberWithCommas(global.NewConfirmed)}</p>
+                  {tempItem(itemOnFocus, 'NewConfirmed')}
                   <p>New Confirmed</p>
                 </div>
               </Item>
@@ -100,7 +119,7 @@ const InfoBox = ({ itemOnFocus }) => {
             <Grid item xs={3}>
               <Item>
                 <div>
-                  <p>{numberWithCommas(global.TotalDeaths)}</p>
+                  {tempItem(itemOnFocus, 'TotalDeaths')}
                   <p>Total Deaths</p>
                 </div>
               </Item>
@@ -108,11 +127,21 @@ const InfoBox = ({ itemOnFocus }) => {
           </Grid>
         </Box>
       </ThemeProvider>
-      <InfoLine />
-      <div className='map-wrapper'>
-        <SideInfo />
-        <MapComponent />
-      </div>
+      {countrySelector
+        ? (
+          <>
+            <InfoLine itemOnFocus={itemOnFocus} />
+            <div className='map-wrapper'>
+              <SideInfo />
+              <MapComponent itemOnFocus={itemOnFocus} />
+            </div>
+          </>
+        )
+        : (
+          <>
+            <NavTabs />
+          </>
+        ) }
     </div>
   );
 };

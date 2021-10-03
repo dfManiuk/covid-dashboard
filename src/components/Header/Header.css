@@ -6,7 +6,7 @@
 
 .header-right_box {
   box-shadow: 4px 0px 15px 0px #696868;
-  width: calc(100vw - 530px);
+  width: calc(100vw - 550px);
   background-color: #61d1d1;
   border-radius: 0px 0px 0px 35px;
 }
@@ -26,13 +26,24 @@
 .header-center_box {
   font-family: "Roboto", serif;
   color: black;
-  margin: 10px 20px 10px 5px;
+  padding: 10px 20px 10px 5px;
 }
 .header-center_box p:first-child {
   font-size: 30px;
 }
 .header-center_box p:last-child {
   font-size: 15px;
+}
+
+.header-center_country {
+  align-items: center;
+  display: flex;
+}
+.header-center_country img:first-child {
+  margin-right: 10px;
+}
+.header-center_country p:last-child {
+  font-size: 25px;
 }
 
 /*# sourceMappingURL=Header.css.map */

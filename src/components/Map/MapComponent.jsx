@@ -44,7 +44,7 @@ const MapComponent = ({ itemOnFocus }) => {
   const position = [51.505, -0.09];
 
   return (
-    <MapContainer center={itemOnFocus === null ? position : itemOnFocus.latlng} zoom={3} zoomControl={false} scrollWheelZoom={false}>
+    <MapContainer center={itemOnFocus === false ? position : itemOnFocus.latlng} zoom={3} zoomControl={false} scrollWheelZoom={false}>
       <TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'

@@ -27,7 +27,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const SidePanel = ({ handleItemClick }) => {
+const SidePanel = ({ handleItemClick, handleClickMainPage }) => {
   const [open, setOpen] = useState(true);
   const { countriesInfo } = useSelector((state) => state.covid);
   const classes = useStyles();
@@ -43,12 +43,12 @@ const SidePanel = ({ handleItemClick }) => {
   ));
 
   const panelBody = (
-    <div className='side-panel__content' onMouseEnter={(event) => console.log(event)}>
+    <div className='side-panel__content'>
       <div className='side-panel__ref'>
         <div className='side-panel__global'>
           <p>COVID - 2019</p>
           <MenuList>
-            <MenuItem>World wide</MenuItem>
+            <MenuItem onClick={handleClickMainPage}>World wide</MenuItem>
             <MenuItem onClick={handleClick}>Country wide
               {!open ? <ExpandLess className='side-panel__expand' /> : <ExpandMore className='side-panel__expand' />}
             </MenuItem>

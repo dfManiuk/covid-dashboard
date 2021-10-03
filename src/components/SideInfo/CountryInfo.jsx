@@ -14,52 +14,48 @@ const CountryInfoStylComponent = styled('div')({
   },
 });
 
-const CountryInfo = ({ countryPosition }) => {
-  console.log(countryPosition);
-
-  return (
-    <div className='country-info'>
-      <List sx={{ width: '100%', maxWidth: 360 }}>
-        <ListItem>
-          <ListItemAvatar>
-            <CountryInfoStylComponent>
-              <Avatar>
-                <Icon status='death' />
-              </Avatar>
-            </CountryInfoStylComponent>
-          </ListItemAvatar>
-          <ListItemText primary='Total Death' secondary={countryPosition.TotalDeaths} />
-        </ListItem>
-        <ListItem>
-          <ListItemAvatar>
-            <CountryInfoStylComponent>
-              <Avatar>
-                <Icon status='confirmed' />
-              </Avatar>
-            </CountryInfoStylComponent>
-          </ListItemAvatar>
-          <ListItemText primary='Total Confirmed' secondary={countryPosition.TotalConfirmed} />
-        </ListItem>
-        <ListItem>
-          <ListItemAvatar>
-            <CountryInfoStylComponent>
-              <Avatar>
-                <Icon status='recovered' />
-              </Avatar>
-            </CountryInfoStylComponent>
-          </ListItemAvatar>
-          <ListItemText primary='Total Recovered' secondary={countryPosition.TotalRecovered} />
-        </ListItem>
-      </List>
-      {/* <p>{countryPosition.Country}</p> */}
-      {/* <p>NewConfirmed: {countryPosition.NewConfirmed}</p> */}
-      {/* <p>NewDeaths: {countryPosition.NewDeaths}</p> */}
-      {/* <p>NewRecovered: {countryPosition.NewRecovered}</p> */}
-      {/* <p>TotalDeaths: {countryPosition.TotalDeaths}</p> */}
-      {/* <p>TotalRecovered: {countryPosition.TotalRecovered}</p> */}
-    </div>
-  );
-};
+const CountryInfo = ({ countryPosition }) => (
+  <div className='country-info'>
+    <List sx={{ width: '100%', maxWidth: 360 }}>
+      <ListItem>
+        <ListItemAvatar>
+          <CountryInfoStylComponent>
+            <Avatar>
+              <Icon status='death' />
+            </Avatar>
+          </CountryInfoStylComponent>
+        </ListItemAvatar>
+        <ListItemText primary='Total Death' secondary={countryPosition.TotalDeaths} />
+      </ListItem>
+      <ListItem>
+        <ListItemAvatar>
+          <CountryInfoStylComponent>
+            <Avatar>
+              <Icon status='confirmed' />
+            </Avatar>
+          </CountryInfoStylComponent>
+        </ListItemAvatar>
+        <ListItemText primary='Total Confirmed' secondary={countryPosition.TotalConfirmed} />
+      </ListItem>
+      <ListItem>
+        <ListItemAvatar>
+          <CountryInfoStylComponent>
+            <Avatar>
+              <Icon status='recovered' />
+            </Avatar>
+          </CountryInfoStylComponent>
+        </ListItemAvatar>
+        <ListItemText primary='Total Recovered' secondary={countryPosition.TotalRecovered} />
+      </ListItem>
+    </List>
+    {/* <p>{countryPosition.Country}</p> */}
+    {/* <p>NewConfirmed: {countryPosition.NewConfirmed}</p> */}
+    {/* <p>NewDeaths: {countryPosition.NewDeaths}</p> */}
+    {/* <p>NewRecovered: {countryPosition.NewRecovered}</p> */}
+    {/* <p>TotalDeaths: {countryPosition.TotalDeaths}</p> */}
+    {/* <p>TotalRecovered: {countryPosition.TotalRecovered}</p> */}
+  </div>
+);
 
 CountryInfo.propTypes = {
   countryPosition: PropTypes.arrayOf(PropTypes.shape({

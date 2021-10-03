@@ -13,7 +13,7 @@ import {
 import MockApi from "../../core/api/covidApi/countryInfoPreConverter";
 
 const App = () => {
-  const [itemOnFocus, setItemOnFocus] = useState(null);
+  const [itemOnFocus, setItemOnFocus] = useState(false);
   const dispatch = useDispatch();
   const {
     global,
@@ -27,6 +27,10 @@ const App = () => {
 
   const handleItemClick = (item) => {
     setItemOnFocus(item);
+  };
+
+  const handleItemMainPage = () => {
+    setItemOnFocus(false);
   };
 
   useEffect(() => {
@@ -49,8 +53,8 @@ const App = () => {
 
   return (
     <>
-      <Header />
-      <SidePanel handleItemClick={handleItemClick} />
+      <Header itemOnFocus={itemOnFocus} />
+      <SidePanel handleItemClick={handleItemClick} handleClickMainPage={handleItemMainPage} />
       <InfoBox itemOnFocus={itemOnFocus} />
     </>
   );
