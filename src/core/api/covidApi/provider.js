@@ -12,7 +12,7 @@ class ProjectApi {
   }
 
   getLookup() {
-    return this.getFetch('https://api.ipdata.co/?api-key=c9faf9d288f6dacf57b138ee06915c854ae6d0b4ccc7fe72a7d5a32a');
+    return fetch('https://get.geojs.io').then((response) => response.text());
   }
 }
 

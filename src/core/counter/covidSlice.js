@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import ProjectApi from "../api/covidApi/provider";
+import ipConverter from "../api/covidApi/ipConverter";
 
 const initialState = {
   global: [],
@@ -7,7 +8,9 @@ const initialState = {
   value: 100,
   loadingStatusCovidApi: 'initialize',
   loadingStatusCountryApi: 'initialize',
+  loadingStatusIpApi: 'initialize',
   countriesInfo: [],
+  ipApi: [],
 };
 
 export const covidApiAsync = createAsyncThunk(
@@ -23,6 +26,15 @@ export const countriesApiAsync = createAsyncThunk(
   'covid/getAllCountry',
   async () => {
     const response = await ProjectApi.getCountry();
+
+    return response;
+  },
+);
+
+export const ipAddressAsync = createAsyncThunk(
+  'covid/get ipAddress',
+  async () => {
+    const response = await ProjectApi.getLookup();
 
     return response;
   },
@@ -68,6 +80,12 @@ export const covidSlice = createSlice({
         state.loadingStatusCountryApi = 'idle';
         // eslint-disable-next-line no-param-reassign
         state.countriesInfo = action.payload;
+      })
+      .addCase(ipAddressAsync.fulfilled, (state, action) => {
+      // eslint-disable-next-line no-param-reassign
+        state.loadingStatusIpApi = 'idle';
+        // eslint-disable-next-line no-param-reassign
+        state.ipApi = ipConverter(action.payload.split('\n'));
       });
   },
 });

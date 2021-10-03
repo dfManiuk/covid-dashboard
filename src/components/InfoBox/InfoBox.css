@@ -1,0 +1,14 @@
+.info-box {
+  margin: 40px 5px 0 345px;
+  min-width: 800px;
+  display: flex;
+  flex-direction: column;
+}
+
+.map-wrapper {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+
+/*# sourceMappingURL=InfoBox.css.map */

@@ -1,0 +1,16 @@
+.side-info {
+  padding: 5px 10px 5px 20px;
+
+  &__country-name {
+    display: flex;
+    font-size: 30px;
+    align-items: center;
+    width: 300px;
+    justify-content: flex-start;
+
+    & img {
+      margin-right: 10px;
+      padding: 2px;
+    }
+  }
+}

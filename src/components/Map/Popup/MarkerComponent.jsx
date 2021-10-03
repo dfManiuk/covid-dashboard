@@ -65,9 +65,6 @@ const MarkerComponent = ({ countyInfo, covidStat, averageCalculation }) => {
                     TotalDeaths:  { TotalDeaths}
                   </span>
                 </div>
-                <div className='m-2'>
-                  Okay
-                </div>
               </div>
             </Popup>
           </Marker>

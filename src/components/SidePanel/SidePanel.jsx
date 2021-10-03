@@ -54,7 +54,7 @@ const SidePanel = ({ handleItemClick }) => {
             </MenuItem>
             <Collapse in={!open} timeout='auto' unmountOnExit>
               <Box
-                sx={{ width: '100%', height: 400, maxWidth: 240, bgcolor: 'background.paper' }}
+                sx={{ width: '100%', height: 400, maxWidth: 240 }}
                 className='side-panel__box'
               >
                 <FixedSizeList

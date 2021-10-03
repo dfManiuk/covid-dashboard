@@ -1,12 +1,13 @@
 .leaflet-container {
-  height: 80vh;
-  width: 100%;
-  box-shadow: 25px 0px 25px 0px rgb(105, 104, 104);
-  left: 350px;
-  top: 80px;
+  height: 400px;
+  width: 800px;
+  box-shadow: 4px 0px 15px 0px #696868;
 }
 
 .leaflet-div-icon {
   background: transparent;
   border: none;
+}
+.map-loading {
+
 }

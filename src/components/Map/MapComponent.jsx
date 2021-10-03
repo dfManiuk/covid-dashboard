@@ -1,38 +1,17 @@
 import { MapContainer, TileLayer } from 'react-leaflet';
 import './MapComponent.scss';
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
-import { countriesApiAsync, covidApiAsync, mockApiCountry, mockStatusCountryApi } from "../../core/counter/covidSlice";
 import MarkerComponent from "./Popup/MarkerComponent";
-import MockApi from "../../core/api/covidApi/countryInfoPreConverter";
 
 const MapComponent = ({ itemOnFocus }) => {
-  const dispatch = useDispatch();
   const {
     global,
     loadingStatusCovidApi, loadingStatusCountryApi,
     countriesInCovid, countriesInfo,
   } = useSelector((state) => state.covid);
 
-  console.log({ global, loadingStatusCountryApi, loadingStatusCovidApi, countriesInCovid, countriesInfo });
-
-  useEffect(() => {
-    dispatch(covidApiAsync());
-    dispatch(countriesApiAsync());
-  }, [dispatch]);
-
-  if (loadingStatusCountryApi !== 'idle') {
-    setTimeout(() => {
-      const mockApi = MockApi();
-
-      dispatch(mockApiCountry(mockApi));
-
-      dispatch(mockStatusCountryApi('idle'));
-    }, 1000);
-  }
-
-  if (loadingStatusCovidApi !== 'idle' || loadingStatusCountryApi !== 'idle') return <p>Loading...</p>;
+  if (loadingStatusCovidApi !== 'idle' || loadingStatusCountryApi !== 'idle') return <p className='map-loading'>Loading...</p>;
 
   const averageCalculation = (() => (global.TotalConfirmed / countriesInCovid.length))();
 
