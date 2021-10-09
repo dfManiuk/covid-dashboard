@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { Avatar, List, ListItem, ListItemAvatar, ListItemText } from "@material-ui/core";
 import { styled } from '@mui/system';
+import * as React from "react";
 import Icon from "../Icon/Icon";
 
 const CountryInfoStylComponent = styled('div')({
@@ -14,6 +15,20 @@ const CountryInfoStylComponent = styled('div')({
   },
 });
 
+const CountryInfoItemText = ({ children }) => (
+  <div style={{
+    color: '#757575',
+    fontSize: '20px',
+    fontWeight: '600',
+    textShadow: ' #9e9e9e 1px 0 2px',
+  }}
+  >{children}
+  </div>
+);
+
+CountryInfoItemText.propTypes = { children: PropTypes.string };
+CountryInfoItemText.defaultProps = { children: '' };
+
 const CountryInfo = ({ countryPosition }) => (
   <div className='country-info'>
     <List sx={{ width: '100%', maxWidth: 360 }}>
@@ -25,7 +40,10 @@ const CountryInfo = ({ countryPosition }) => (
             </Avatar>
           </CountryInfoStylComponent>
         </ListItemAvatar>
-        <ListItemText primary='Total Death' secondary={countryPosition.TotalDeaths} />
+        <ListItemText
+          primary={<CountryInfoItemText>Total Death</CountryInfoItemText>}
+          secondary={countryPosition.TotalDeaths}
+        />
       </ListItem>
       <ListItem>
         <ListItemAvatar>
@@ -35,7 +53,10 @@ const CountryInfo = ({ countryPosition }) => (
             </Avatar>
           </CountryInfoStylComponent>
         </ListItemAvatar>
-        <ListItemText primary='Total Confirmed' secondary={countryPosition.TotalConfirmed} />
+        <ListItemText
+          primary={<CountryInfoItemText>Total Confirmed</CountryInfoItemText>}
+          secondary={countryPosition.TotalConfirmed}
+        />
       </ListItem>
       <ListItem>
         <ListItemAvatar>
@@ -45,15 +66,12 @@ const CountryInfo = ({ countryPosition }) => (
             </Avatar>
           </CountryInfoStylComponent>
         </ListItemAvatar>
-        <ListItemText primary='Total Recovered' secondary={countryPosition.TotalRecovered} />
+        <ListItemText
+          primary={<CountryInfoItemText>Total Recovered</CountryInfoItemText>}
+          secondary={countryPosition.TotalRecovered}
+        />
       </ListItem>
     </List>
-    {/* <p>{countryPosition.Country}</p> */}
-    {/* <p>NewConfirmed: {countryPosition.NewConfirmed}</p> */}
-    {/* <p>NewDeaths: {countryPosition.NewDeaths}</p> */}
-    {/* <p>NewRecovered: {countryPosition.NewRecovered}</p> */}
-    {/* <p>TotalDeaths: {countryPosition.TotalDeaths}</p> */}
-    {/* <p>TotalRecovered: {countryPosition.TotalRecovered}</p> */}
   </div>
 );
 

@@ -130,16 +130,16 @@ const InfoBox = ({ itemOnFocus }) => {
       {countrySelector
         ? (
           <>
-            <InfoLine itemOnFocus={itemOnFocus} />
+            <InfoLine />
             <div className='map-wrapper'>
               <SideInfo />
-              <MapComponent itemOnFocus={itemOnFocus} />
+              <MapComponent itemOnFocus={itemOnFocus} tempItem={tempItem} />
             </div>
           </>
         )
         : (
           <>
-            <NavTabs />
+            <NavTabs itemOnFocus={itemOnFocus} />
           </>
         ) }
     </div>
