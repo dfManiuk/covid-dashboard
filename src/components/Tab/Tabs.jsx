@@ -3,8 +3,8 @@ import { Box, Tab, Tabs, Typography } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import LineChart from "../Chart/LineChart";
 import ProjectApi from "../../core/api/covidApi/provider";
+import LineChart from "../Chart/LineChart";
 
 function LinkTab(props) {
   return (
@@ -56,7 +56,7 @@ const NavTabs = ({ itemOnFocus }) => {
   useEffect(() => {
     ProjectApi.getCovidInfoFromCountry(
       infoAboutCountry.Country,
-      '2021-08-01',
+      '2021-04-01',
       infoAboutCountry.Date.substr(0, 10),
     ).then((responseData) => {
       setCountryCovid(responseData);
@@ -75,17 +75,34 @@ const NavTabs = ({ itemOnFocus }) => {
     <Box sx={{ width: '100%' }}>
       <Tabs value={value} onChange={handleChange} aria-label='nav tabs example'>
         <LinkTab label='Infected VS Recovered' />
-        <LinkTab label='Page Two' />
-        <LinkTab label='Page Three' />
+        <LinkTab label='Death' />
+        <LinkTab label='Active' />
       </Tabs>
       {isLoading ? (
-        <TabPanel value={value} index={0}>
-          <LineChart
-            lineOne={infoAboutCountry.TotalConfirmed}
-            lineTwo={infoAboutCountry.TotalRecovered}
-            countyCovid={countyCovid}
-          />
-        </TabPanel>
+        <>
+          <TabPanel value={value} index={0}>
+            <LineChart
+              lineOne={infoAboutCountry.TotalConfirmed}
+              lineTwo={infoAboutCountry.TotalRecovered}
+              countyCovid={countyCovid}
+              typeOfLine='Infected vs Recovered'
+            />
+          </TabPanel>
+          <TabPanel value={value} index={1}>
+            <LineChart
+              lineOne={infoAboutCountry.TotalDeaths}
+              countyCovid={countyCovid}
+              typeOfLine='Death'
+            />
+          </TabPanel>
+          <TabPanel value={value} index={2}>
+            <LineChart
+              lineOne={infoAboutCountry.TotalDeaths}
+              countyCovid={countyCovid}
+              typeOfLine='Active'
+            />
+          </TabPanel>
+        </>
       ) : <p> Load...</p>}
     </Box>
   );

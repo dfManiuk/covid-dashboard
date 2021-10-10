@@ -1,48 +1,7 @@
 import { Line } from "react-chartjs-2";
 import { makeStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
-import { mockForLine } from '../../core/mock/mockForLine';
-
-const MONTH_NAMES = ["January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December",
-];
-
-const data = (lineOne, lineTwo) => ({
-  labels: (() => {
-    const date = new Date();
-    const arr = [];
-
-    for (let i = 5; i >= 0; i -= 1) {
-      arr.push(MONTH_NAMES[date.getMonth() - i]);
-    }
-
-    return arr;
-  })(),
-  datasets: [
-    {
-      label: 'infected',
-      data: mockForLine(lineOne).concat(lineOne),
-      fill: false,
-      backgroundColor: '#ffcf33',
-      borderColor: '#ffcf3385',
-    },
-    {
-      label: 'recovered',
-      data: mockForLine(lineTwo).concat(lineTwo),
-      fill: false,
-      backgroundColor: 'rgb(255, 99, 132)',
-      borderColor: 'rgba(255, 99, 132, 0.2)',
-    },
-  ],
-});
-
-const options = {
-  scales: {
-    yAxes: [
-      { ticks: { beginAtZero: true } },
-    ],
-  },
-};
+import { options, data } from '../Tab/tabsData';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -51,16 +10,35 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const LineChart = ({ lineOne, lineTwo }) => {
+const LineChart = ({ lineOne, lineTwo, countyCovid, typeOfLine }) => {
   const classes = useStyles();
+
+  const reg = /-([\S]+?)-/;
+  const sortArray = new Map();
+  let temp = '01';
+
+  countyCovid.forEach((item) => {
+    const date = item.Date;
+
+    if (date.match(reg)[1] !== temp) {
+      sortArray.set(item.Date.match(reg)[1], [item]);
+
+      // eslint-disable-next-line prefer-destructuring
+      temp = item.Date.match(reg)[1];
+    } else {
+      const arr = sortArray.get(temp);
+
+      arr.push(item);
+    }
+  });
 
   return (
     <>
       <div className={classes.root}>
-        <h1 className='title'>Infected VS Recovered</h1>
+        <h1 className='title'>{typeOfLine}</h1>
         <div className='links' />
       </div>
-      <Line data={data(lineOne, lineTwo)} options={options} />
+      <Line data={data(lineOne, lineTwo, sortArray, typeOfLine)} options={options} />
     </>
   );
 };
@@ -68,10 +46,14 @@ const LineChart = ({ lineOne, lineTwo }) => {
 LineChart.propTypes = {
   lineOne: PropTypes.number,
   lineTwo: PropTypes.number,
+  countyCovid: PropTypes.arrayOf(PropTypes.shape({})),
+  typeOfLine: PropTypes.string,
 };
 LineChart.defaultProps = {
   lineOne: -1,
   lineTwo: -1,
+  countyCovid: {},
+  typeOfLine: 'infected_vs_recovered',
 };
 
 export default LineChart;
