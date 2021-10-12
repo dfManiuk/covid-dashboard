@@ -2,6 +2,8 @@ import { MapContainer, TileLayer } from 'react-leaflet';
 import './MapComponent.scss';
 import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
+import { CircularProgress } from "@material-ui/core";
+import * as React from "react";
 import MarkerComponent from "./Popup/MarkerComponent";
 
 const MapComponent = ({ itemOnFocus }) => {
@@ -11,7 +13,7 @@ const MapComponent = ({ itemOnFocus }) => {
     countriesInCovid, countriesInfo,
   } = useSelector((state) => state.covid);
 
-  if (loadingStatusCovidApi !== 'idle' || loadingStatusCountryApi !== 'idle') return <p className='map-loading'>Loading...</p>;
+  if (loadingStatusCovidApi !== 'idle' || loadingStatusCountryApi !== 'idle') return <p className='map-loading'><CircularProgress /></p>;
 
   const averageCalculation = (() => (global.TotalConfirmed / countriesInCovid.length))();
 

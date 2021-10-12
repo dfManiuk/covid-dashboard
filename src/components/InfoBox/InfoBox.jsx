@@ -1,8 +1,9 @@
 import './InfoBox.scss';
 import { useSelector } from "react-redux";
-import { Box, Grid } from "@material-ui/core";
+import { Box, CircularProgress, Grid } from "@material-ui/core";
 import { styled, createTheme, ThemeProvider } from '@mui/system';
 import PropTypes from "prop-types";
+import * as React from "react";
 import InfoLine from "../InfoLine/InfoLine";
 import SideInfo from "../SideInfo/SideInfo";
 import MapComponent from "../Map/MapComponent";
@@ -64,7 +65,7 @@ const InfoBox = ({ itemOnFocus }) => {
   const { global, loadingStatusCovidApi, countriesInCovid } = useSelector((state) => state.covid);
 
   if (loadingStatusCovidApi !== 'idle') {
-    return <div> Loading... </div>;
+    return <div> <CircularProgress /> </div>;
   }
 
   let countrySelector = true;

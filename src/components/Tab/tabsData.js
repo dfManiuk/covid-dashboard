@@ -45,7 +45,8 @@ export const data = (lineOne, lineTwo, sortArray, type) => ({
 });
 
 export const options = {
-  legend: { display: false },
+  responsive: true,
+  maintainAspectRatio: true,
   scales: {
     yAxes: [
       { ticks: { beginAtZero: true } },

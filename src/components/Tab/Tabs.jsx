@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { Box, Tab, Tabs, Typography } from "@material-ui/core";
+import { Box, CircularProgress, Tab, Tabs, Typography } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import { makeStyles } from "@material-ui/core/styles";
 import ProjectApi from "../../core/api/covidApi/provider";
 import LineChart from "../Chart/LineChart";
 
@@ -34,6 +35,15 @@ function TabPanel(props) {
     </Typography>
   );
 }
+
+const useStyles = makeStyles(() => ({
+  root: {
+    fontSize: '30px',
+    textAlign: 'center',
+    margin: `20px 20px 0 0`,
+  },
+}));
+
 TabPanel.propTypes = {
   children: PropTypes.node,
   index: PropTypes.number,
@@ -50,26 +60,29 @@ const NavTabs = ({ itemOnFocus }) => {
   const { countriesInCovid } = useSelector((state) => state.covid);
   const [countyCovid, setCountryCovid] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const classes = useStyles();
 
   const infoAboutCountry = countriesInCovid.find((item) => item.Country === itemOnFocus.name);
 
   useEffect(() => {
-    ProjectApi.getCovidInfoFromCountry(
-      infoAboutCountry.Country,
-      '2021-04-01',
-      infoAboutCountry.Date.substr(0, 10),
-    ).then((responseData) => {
-      setCountryCovid(responseData);
+    if (typeof infoAboutCountry === 'undefined') {
+      setIsLoading(false);
+    } else {
+      ProjectApi.getCovidInfoFromCountry(
+        infoAboutCountry.Country,
+        '2021-04-01',
+        infoAboutCountry.Date.substr(0, 10),
+      ).then((responseData) => {
+        setCountryCovid(responseData);
 
-      setIsLoading(true);
-    });
+        setIsLoading(true);
+      }).catch(() => setIsLoading(false));
+    }
   }, [itemOnFocus]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
-  console.log(countyCovid);
 
   return (
     <Box sx={{ width: '100%' }}>
@@ -78,7 +91,7 @@ const NavTabs = ({ itemOnFocus }) => {
         <LinkTab label='Death' />
         <LinkTab label='Active' />
       </Tabs>
-      {isLoading ? (
+      {isLoading && infoAboutCountry?.TotalConfirmed !== undefined ? (
         <>
           <TabPanel value={value} index={0}>
             <LineChart
@@ -103,11 +116,12 @@ const NavTabs = ({ itemOnFocus }) => {
             />
           </TabPanel>
         </>
-      ) : <p> Load...</p>}
+      ) : <p className={classes.root}> {isLoading ? (<CircularProgress />) : 'Not found data for this country. Try later...'}</p> }
     </Box>
   );
 };
 
 NavTabs.propTypes = { itemOnFocus: PropTypes.func };
 NavTabs.defaultProps = { itemOnFocus: () => {} };
+
 export default NavTabs;
