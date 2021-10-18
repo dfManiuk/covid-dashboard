@@ -54,7 +54,7 @@ const Item = styled('div', {
   boxShadow: '1px 2px 3px 1px #6968687d;',
   fontSize: '20px',
   div: {
-    '& > :first-child': {
+    '& > :first-of-type': {
       fontSize: '30px',
       marginBottom: '10px',
     },
@@ -147,6 +147,6 @@ const InfoBox = ({ itemOnFocus }) => {
   );
 };
 
-InfoBox.propTypes = { itemOnFocus: PropTypes.func };
+InfoBox.propTypes = { itemOnFocus: PropTypes.bool };
 InfoBox.defaultProps = { itemOnFocus: () => {} };
 export default InfoBox;

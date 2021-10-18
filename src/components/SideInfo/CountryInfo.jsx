@@ -9,7 +9,7 @@ const CountryInfoStylComponent = styled('div')({
   height: '60px',
   color: 'darkslategray',
   padding: 8,
-  '& > :first-child': {
+  '& > :first-of-type': {
     width: '60px',
     height: '60px',
   },
@@ -76,7 +76,7 @@ const CountryInfo = ({ countryPosition }) => (
 );
 
 CountryInfo.propTypes = {
-  countryPosition: PropTypes.arrayOf(PropTypes.shape({
+  countryPosition: PropTypes.shape({
     Country: PropTypes.string,
     CountryCode: PropTypes.string,
     Date: PropTypes.string,
@@ -88,7 +88,7 @@ CountryInfo.propTypes = {
     TotalConfirmed: PropTypes.number,
     TotalDeaths: PropTypes.number,
     TotalRecovered: PropTypes.number,
-  })),
+  }),
 };
 CountryInfo.defaultProps = {
   countryPosition: {

@@ -27,7 +27,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const SidePanel = ({ handleItemClick, handleClickMainPage }) => {
+const SidePanel = ({ handleItemClick, handleClickMainPage, handleClickCountries }) => {
   const [open, setOpen] = useState(true);
   const { countriesInfo } = useSelector((state) => state.covid);
   const classes = useStyles();
@@ -69,8 +69,7 @@ const SidePanel = ({ handleItemClick, handleClickMainPage }) => {
                 </FixedSizeList>
               </Box>
             </Collapse>
-            <MenuItem>Case Statistics</MenuItem>
-            <MenuItem>Counties</MenuItem>
+            <MenuItem onClick={handleClickCountries}>Countries</MenuItem>
             <MenuItem>Incubation</MenuItem>
             <MenuItem>Age</MenuItem>
             <MenuItem>Symptoms</MenuItem>

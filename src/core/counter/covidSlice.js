@@ -45,46 +45,34 @@ export const covidSlice = createSlice({
   initialState,
   reducers: {
     mockApiCountry: (state, action) => {
-      // eslint-disable-next-line no-param-reassign
       state.countriesInfo = action.payload;
     },
     mockStatusCountryApi: (state, action) => {
-      // eslint-disable-next-line no-param-reassign
       state.loadingStatusCountryApi = action.payload;
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(covidApiAsync.pending, (state) => {
-        // eslint-disable-next-line no-param-reassign
         state.loadingStatusCovidApi = 'loading';
       })
       .addCase(countriesApiAsync.pending, (state) => {
-        // eslint-disable-next-line no-param-reassign
         state.loadingStatusCountryApi = 'loading';
       })
       .addCase(countriesApiAsync.rejected, (state) => {
-        // eslint-disable-next-line no-param-reassign
         state.loadingStatusCountryApi = 'reject';
       })
       .addCase(covidApiAsync.fulfilled, (state, action) => {
-        // eslint-disable-next-line no-param-reassign
         state.loadingStatusCovidApi = 'idle';
-        // eslint-disable-next-line no-param-reassign
         state.global = action.payload.Global;
-        // eslint-disable-next-line no-param-reassign
         state.countriesInCovid = action.payload.Countries;
       })
       .addCase(countriesApiAsync.fulfilled, (state, action) => {
-        // eslint-disable-next-line no-param-reassign
         state.loadingStatusCountryApi = 'idle';
-        // eslint-disable-next-line no-param-reassign
         state.countriesInfo = action.payload;
       })
       .addCase(ipAddressAsync.fulfilled, (state, action) => {
-      // eslint-disable-next-line no-param-reassign
         state.loadingStatusIpApi = 'idle';
-        // eslint-disable-next-line no-param-reassign
         state.ipApi = ipConverter(action.payload.split('\n'));
       });
   },

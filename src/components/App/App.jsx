@@ -14,7 +14,9 @@ import MockApi from "../../core/api/covidApi/countryInfoPreConverter";
 
 const App = () => {
   const [itemOnFocus, setItemOnFocus] = useState(false);
+  const [isCountriesOpen, setIsCountriesOpen] = useState(false);
   const dispatch = useDispatch();
+
   const {
     global,
     countriesInfo,
@@ -31,6 +33,11 @@ const App = () => {
 
   const handleItemMainPage = () => {
     setItemOnFocus(false);
+    setIsCountriesOpen(false);
+  };
+
+  const handleClickCountries = () => {
+    setIsCountriesOpen(!isCountriesOpen);
   };
 
   useEffect(() => {
@@ -54,8 +61,14 @@ const App = () => {
   return (
     <>
       <Header itemOnFocus={itemOnFocus} />
-      <SidePanel handleItemClick={handleItemClick} handleClickMainPage={handleItemMainPage} />
-      <InfoBox itemOnFocus={itemOnFocus} />
+      <SidePanel
+        handleItemClick={handleItemClick}
+        handleClickMainPage={handleItemMainPage}
+        handleClickCountries={handleClickCountries}
+      />
+      {!isCountriesOpen ? (
+        <InfoBox itemOnFocus={itemOnFocus} />
+      ) : null}
     </>
   );
 };

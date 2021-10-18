@@ -74,8 +74,21 @@ const MarkerComponent = ({ countyInfo, covidStat, averageCalculation }) => {
 };
 
 MarkerComponent.propTypes = {
-  countyInfo: PropTypes.arrayOf(Object),
-  covidStat: PropTypes.arrayOf(Object),
+  countyInfo: PropTypes.shape({
+    flag: PropTypes.string,
+    latlng: PropTypes.arrayOf(PropTypes.number),
+    name: PropTypes.string,
+
+  }),
+  covidStat: PropTypes.shape({
+    NewConfirmed: PropTypes.number,
+    NewDeaths: PropTypes.number,
+    NewRecovered: PropTypes.number,
+    Slug: PropTypes.string,
+    TotalConfirmed: PropTypes.number,
+    TotalDeaths: PropTypes.number,
+    TotalRecovered: PropTypes.number,
+  }),
   averageCalculation: PropTypes.number,
 };
 MarkerComponent.defaultProps = {

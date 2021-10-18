@@ -56,5 +56,5 @@ const MapComponent = ({ itemOnFocus }) => {
   );
 };
 
-MapComponent.propTypes = { itemOnFocus: PropTypes.element.isRequired };
+MapComponent.propTypes = { itemOnFocus: PropTypes.bool.isRequired };
 export default MapComponent;
