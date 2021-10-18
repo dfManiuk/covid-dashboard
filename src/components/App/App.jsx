@@ -17,15 +17,7 @@ const App = () => {
   const [isCountriesOpen, setIsCountriesOpen] = useState(false);
   const dispatch = useDispatch();
 
-  const {
-    global,
-    countriesInfo,
-    loadingStatusCountryApi,
-    countriesInCovid,
-    loadingStatusCovidApi,
-    loadingStatusIpApi,
-    ipApi,
-  } = useSelector((state) => state.covid);
+  const { loadingStatusCountryApi } = useSelector((state) => state.covid);
 
   const handleItemClick = (item) => {
     setItemOnFocus(item);
@@ -55,8 +47,6 @@ const App = () => {
       dispatch(mockStatusCountryApi('idle'));
     }, 1000);
   }
-
-  console.log({ global, ipApi, loadingStatusCountryApi, loadingStatusCovidApi, countriesInCovid, countriesInfo, loadingStatusIpApi });
 
   return (
     <>

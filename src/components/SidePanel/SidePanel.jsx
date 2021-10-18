@@ -70,9 +70,9 @@ const SidePanel = ({ handleItemClick, handleClickMainPage, handleClickCountries 
               </Box>
             </Collapse>
             <MenuItem onClick={handleClickCountries}>Countries</MenuItem>
-            <MenuItem>Incubation</MenuItem>
-            <MenuItem>Age</MenuItem>
-            <MenuItem>Symptoms</MenuItem>
+            {/* <MenuItem>Incubation</MenuItem> */}
+            {/* <MenuItem>Age</MenuItem> */}
+            {/* <MenuItem>Symptoms</MenuItem> */}
           </MenuList>
         </div>
       </div>

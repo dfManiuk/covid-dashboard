@@ -78,7 +78,7 @@ const NavTabs = ({ itemOnFocus }) => {
         setIsLoading(true);
       }).catch(() => setIsLoading(false));
     }
-  }, [itemOnFocus]);
+  }, [itemOnFocus, infoAboutCountry]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
