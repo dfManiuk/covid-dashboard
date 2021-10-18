@@ -13,7 +13,8 @@ const MapComponent = ({ itemOnFocus }) => {
     countriesInCovid, countriesInfo,
   } = useSelector((state) => state.covid);
 
-  if (loadingStatusCovidApi !== 'idle' || loadingStatusCountryApi !== 'idle') return <p className='map-loading'><CircularProgress /></p>;
+  if (loadingStatusCovidApi !== 'idle'
+      || loadingStatusCountryApi !== 'idle') return <p className='map-loading'><CircularProgress /></p>;
 
   const averageCalculation = (() => (global.TotalConfirmed / countriesInCovid.length))();
 

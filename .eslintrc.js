@@ -20,6 +20,7 @@ module.exports = {
     "jest",
   ],
   rules: {
+    "prefer-destructuring": ["error", { object: true, array: false }],
     "no-param-reassign": 0,
     "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
     "react-hooks/exhaustive-deps": "warn", // Checks effect dependencies

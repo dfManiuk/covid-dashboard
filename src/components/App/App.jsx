@@ -9,7 +9,7 @@ import {
   covidApiAsync, ipAddressAsync,
   mockApiCountry,
   mockStatusCountryApi,
-} from "../../core/counter/covidSlice";
+} from "../../core/covid/covidSlice";
 import MockApi from "../../core/api/covidApi/countryInfoPreConverter";
 
 const App = () => {

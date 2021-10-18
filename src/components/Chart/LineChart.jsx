@@ -15,18 +15,17 @@ const LineChart = ({ lineOne, lineTwo, countyCovid, typeOfLine }) => {
 
   const reg = /-([\S]+?)-/;
   const sortArray = new Map();
-  let temp = '01';
+  let firstMonthNum = '01';
 
   countyCovid.forEach((item) => {
     const date = item.Date;
 
-    if (date.match(reg)[1] !== temp) {
+    if (date.match(reg)[1] !== firstMonthNum) {
       sortArray.set(item.Date.match(reg)[1], [item]);
 
-      // eslint-disable-next-line prefer-destructuring
-      temp = item.Date.match(reg)[1];
+      firstMonthNum = item.Date.match(reg)[1];
     } else {
-      const arr = sortArray.get(temp);
+      const arr = sortArray.get(firstMonthNum);
 
       arr.push(item);
     }

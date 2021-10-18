@@ -1,7 +1,7 @@
 import React from 'react';
-import deathImg from '../../core/details/img/death.svg';
-import confirmedImg from '../../core/details/img/test-results.svg';
-import recoveredImg from '../../core/details/img/no-virus.svg';
+import deathImg from '../../assets/img/death.svg';
+import confirmedImg from '../../assets/img/test-results.svg';
+import recoveredImg from '../../assets/img/no-virus.svg';
 
 const TypeToIconMap = {
   death: () => (

@@ -1,7 +1,7 @@
 import { Popup, Marker } from 'react-leaflet';
 import PropTypes from "prop-types";
 import { Icon } from "leaflet";
-import image from "../../../core/details/img/virus_corona.svg";
+import image from "../../../assets/img/virus_corona.svg";
 
 const MarkerComponent = ({ countyInfo, covidStat, averageCalculation }) => {
   const { flag, latlng, name } = countyInfo;

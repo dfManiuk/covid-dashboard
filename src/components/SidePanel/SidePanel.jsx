@@ -50,7 +50,9 @@ const SidePanel = ({ handleItemClick, handleClickMainPage, handleClickCountries 
           <MenuList>
             <MenuItem onClick={handleClickMainPage}>World wide</MenuItem>
             <MenuItem onClick={handleClick}>Country wide
-              {!open ? <ExpandLess className='side-panel__expand' /> : <ExpandMore className='side-panel__expand' />}
+              {!open
+                ? <ExpandLess className='side-panel__expand' />
+                : <ExpandMore className='side-panel__expand' />}
             </MenuItem>
             <Collapse in={!open} timeout='auto' unmountOnExit>
               <Box
@@ -70,9 +72,6 @@ const SidePanel = ({ handleItemClick, handleClickMainPage, handleClickCountries 
               </Box>
             </Collapse>
             <MenuItem onClick={handleClickCountries}>Countries</MenuItem>
-            {/* <MenuItem>Incubation</MenuItem> */}
-            {/* <MenuItem>Age</MenuItem> */}
-            {/* <MenuItem>Symptoms</MenuItem> */}
           </MenuList>
         </div>
       </div>

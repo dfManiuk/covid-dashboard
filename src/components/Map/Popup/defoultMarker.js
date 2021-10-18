@@ -1,5 +1,5 @@
 import { Icon } from "leaflet";
-import image from '../../../core/details/img/virus_corona.svg';
+import image from '../../../assets/img/virus_corona.svg';
 
 export const defaultMarker = new Icon({
   iconUrl: image,
