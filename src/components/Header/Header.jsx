@@ -34,33 +34,19 @@ const Header = ({ itemOnFocus }) => (
 );
 
 Header.propTypes = {
-  itemOnFocus: PropTypes.arrayOf(PropTypes.shape({
-    Country: PropTypes.string,
-    CountryCode: PropTypes.string,
-    Date: PropTypes.string,
-    ID: PropTypes.string,
-    NewConfirmed: PropTypes.number,
-    NewDeaths: PropTypes.number,
-    NewRecovered: PropTypes.number,
-    Slug: PropTypes.string,
-    TotalConfirmed: PropTypes.number,
-    TotalDeaths: PropTypes.number,
-    TotalRecovered: PropTypes.number,
-  })),
+  itemOnFocus: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.shape({
+      flag: PropTypes.string,
+      name: PropTypes.string,
+    }),
+  ]),
+
 };
 Header.defaultProps = {
   itemOnFocus: {
-    Country: "No data found",
-    CountryCode: "No data found",
-    Date: "0000-00-00T00:00:00.0000",
-    ID: "d3d0ea12-0612-4e13-9b00-fe9cd35b3b24",
-    NewConfirmed: -1,
-    NewDeaths: -1,
-    NewRecovered: -1,
-    Slug: "No data found",
-    TotalConfirmed: -1,
-    TotalDeaths: -1,
-    TotalRecovered: -1,
+    flag: "No data found",
+    name: "No data found",
   },
 };
 

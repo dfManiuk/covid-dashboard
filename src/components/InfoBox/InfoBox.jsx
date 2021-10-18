@@ -147,6 +147,11 @@ const InfoBox = ({ itemOnFocus }) => {
   );
 };
 
-InfoBox.propTypes = { itemOnFocus: PropTypes.bool };
+InfoBox.propTypes = {
+  itemOnFocus: PropTypes.oneOfType([
+    PropTypes.shape({ name: PropTypes.string }),
+    PropTypes.bool,
+  ]),
+};
 InfoBox.defaultProps = { itemOnFocus: () => {} };
 export default InfoBox;

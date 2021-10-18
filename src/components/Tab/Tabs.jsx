@@ -121,7 +121,7 @@ const NavTabs = ({ itemOnFocus }) => {
   );
 };
 
-NavTabs.propTypes = { itemOnFocus: PropTypes.func };
+NavTabs.propTypes = { itemOnFocus: PropTypes.shape({ name: PropTypes.string }) };
 NavTabs.defaultProps = { itemOnFocus: () => {} };
 
 export default NavTabs;
